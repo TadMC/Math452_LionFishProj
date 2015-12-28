@@ -1,0 +1,74 @@
+\documentclass[11pt]{article}
+\usepackage{amssymb, amsmath,fullpage}
+\usepackage{graphicx, setspace,amsthm}
+\usepackage{amsfonts,amsmath,amsthm,array,amssymb, mathrsfs}
+\usepackage{framed} %%%!!!!!!!!!!!
+\usepackage{color}
+\usepackage{listings}
+\lstset{ %
+language=Python,                % choose the language of the code
+basicstyle=\footnotesize,       % the size of the fonts that are used for the code
+               % where to put the line-numbers
+numberstyle=\footnotesize,      % the size of the fonts that are used for the line-numbers
+stepnumber=1,                   % the step between two line-numbers. If it is 1 each line will be numbered
+numbersep=5pt,                  % how far the line-numbers are from the code
+backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+showspaces=false,               % show spaces adding particular underscores
+showstringspaces=false,         % underline spaces within strings
+showtabs=false,                 % show tabs within strings adding particular underscores
+frame=single,           % adds a frame around the code
+tabsize=2,          % sets default tabsize to 2 spaces
+captionpos=b,           % sets the caption-position to bottom
+breaklines=true,        % sets automatic line breaking
+breakatwhitespace=false,    % sets if automatic breaks should only happen at whitespace
+escapeinside={\%*}{*)}          % if you want to add a comment within your code
+}
+
+
+\begin{document}
+
+\begin{lstlisting}
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy.integrate as integrate
+import math
+
+def main():
+    global grouper_harv
+    global lion_attack
+ 
+    C0 = 212
+    L0 = 45
+    G0 = 178
+    
+    K = 800
+    RC = .447
+    dl = .3 
+    bl = .05
+    grouper_harv = .349
+    lion_attack = 8.6/240
+
+    t = np.linspace(0, 5, num=300)
+    y0 = [C0, L0, G0]  
+  
+    y = integrate.odeint(derivs, y0, t, args=(dl,RC,K,bl))
+    
+\end{lstlisting}
+     
+\begin{lstlisting}
+
+def derivs(state,t,dl,RC, K,bl):
+    global lion_attack, grouper_harv
+
+    C, L ,G = state   
+    
+    g= C*RC - C*RC*C/K - L*(C*lion_attack)/(1+C*lion_attack*.4)
+   
+    f= L*((bl*lion_attack*C) - dl) - ( L*(2*G)/(1+.91*G))
+    
+    h = (G*(.8) - G*.8*G/3000)
+
+    return g,f,h
+    
+\end{lstlisting}
+\end{document}

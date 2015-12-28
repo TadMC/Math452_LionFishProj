@@ -1,0 +1,204 @@
+  \documentclass[11pt]{article}
+ \usepackage{amssymb, amsmath,fullpage}
+ \usepackage{graphicx, setspace,amsthm}
+\usepackage{amsfonts,amsmath,amsthm,array,amssymb, mathrsfs}
+
+
+\begin{document} 
+
+I will now introduce to you the:
+\begin{center}
+ $\textbf{NEW}$ $\small{(and\ most\ likely\ last)}$ $\textbf{ SYSTEM of DIFFERENTIAL EQUATIONS}$:\\
+\end{center}
+
+\textbf{THINGS YOU MUST UNDERSTAND}
+\begin{enumerate}
+\item All of the $h_{x,y}$'s are constant during stability analysis since you can not have changing parameters in stability analysis. 
+
+\item The harvesting density function ($h_{x,y}$), should be read as follows:  $h_{x,y}:$ "The ratio of the population of $x$ harvested by $y$ ". 
+\item You will see that the $h_{x,y}$'s are written in conjunction with their respective $X and Y$. (Ex: $h_{x,y}X\cdot Y$). This is different than what we were working with previously and will be different than when we actually plot these graphs. The reason for this change is that the equations have no "real" (not $\mathbb{R}$) solution if not. 
+
+\item The reason for the difference is because the harvesting density function ($h.d.f.$) is a function of X and Y and as such need to be pulled out of the density function for the $h.d.f.$'s to be considered constant. This also $\emph{dramatically}$ simplifies the problem as well. 
+
+\item Kary was absolutely correct in his assumption that we should only consider 2 populations in the model. After conferring with Dr. Sutton this afternoon, the following things have been changed in the model.
+	\begin{enumerate}
+	\item We are no longer considering GROUPER as a dynamic population. Since grouper have no predators in the system other than humans, which had been  lumped into the natural death rate of of the grouper, then the population either exists as a locally asymptotically stable population in the system or goes to extinction. Since, it would do us no good to consider any unstable or zero population equilibrium points of the grouper population, we are going to consider the grouper population (once they're introduced to the system) to be $L.A.S$ and greater that zero.
+	\item The CORAL FISH population model has changed to a Logistic Growth model.  The reason is simple: If we didnt change the population model, the coral fish population will grow to infinity as $t \rightarrow \infty$, which is just not right.  There has to be some natural limiting factor of the environment, or else, when we introduce LIONFISH, the lionfish can possibly grow to infinity as well. Which, given how quickly they reproduce, would only take a few months to displace all the ocean water in the world. 
+
+	\item Equilibrium points will be of the basic form: $E_{L,C}$ and the harvesting terms will be expressed as subscripts of $L$ and $C$. Example:
+
+		\begin{enumerate}
+		\item  The equilibrium point of the system with Coral fish being harvested by Lionfish and Grouper, and Lionfish being harvested by Humans and Grouper will be denoted as:  $E_{L_{H,G},C_{L,G}}$ (if this isn't too hard to read)
+		\end{enumerate}
+
+	\end{enumerate}
+\item The reason for ALL of these changes are for simplicity and understandability. I feel and I hope you do as well, that the model is a simple as needed, with no extra terms.
+\end{enumerate}
+
+{\parindent0pt
+Speaking of the model...
+
+\begin{center}
+MODEL
+\end{center}
+
+Model 1:\\
+Base Line model of only coral fish:  \\
+and $C(0) > 0,  L(0) = 0$\\
+\begin{align*}
+\frac{dL}{dt} &= 0  \\
+\frac{dC}{dt} &= R_{c}C \left[ 1 - \frac{C}{K} \right]
+\end{align*}
+
+Model 2:\\
+Coral fish w/ $h_{C,L}$ \& Lionfish :\\
+and $C(0) > 0,  L(0) > 0$\\
+\begin{align*}
+\frac{dL}{dt} &= (C b_{L} - d_{L}) L\\
+\frac{dC}{dt} &= R_{c}C \left[ 1 - \frac{C}{K} \right] - h_{C,L}CL
+\end{align*}
+
+Model 3:\\
+Coral fish w/ $h_{C,L}$ \& Lionfish w/ $h_{L,H}$:\\
+and $C(0) > 0,  L(0) = 0$\\
+\begin{align*}
+\frac{dL}{dt} &= (C b_{L} - d_{L}) L - h_{L,H}LH\\
+\frac{dC}{dt} &= R_{c}C \left[ 1 - \frac{C}{K} \right] - h_{C,L}CL
+\end{align*}
+
+Model 4:\\
+Coral fish w/ $(h_{C,L}, h_{C,G})$ \& Lionfish w/ $(h_{L,H}, h_{G,H})$:\\
+and $C(0) > 0,  L(0) = 0$\\
+\begin{align*}
+\frac{dL}{dt} &= (C b_{L} - d_{L}) L - h_{L,H}LH - h_{L,G}LG\\
+\frac{dC}{dt} &= R_{c}C \left[ 1 - \frac{C}{K} \right] - h_{C,L}CL - h_{C,G}CG
+\end{align*}
+\vspace{.5in}\\
+\emph{Terms \& Parameters!}
+\begin{center}
+\begin{tabular}{| c || l | c |}
+\hline
+Term/Param & Definition & Range \\ \hline
+L& Population of Lionfish at time $t$ & $L\geq 0$\\ \hline
+C& Population of Coral Fish at time $t$ & $ C \geq 0 $\\ \hline
+G& Population of Grouper& constant: $\geq 0$\\ \hline
+H& Population of Humans&constant: $\geq 0$\\ \hline
+$h_{C,L}$& Ratio of Coral Fish population harvested by Lionfish& $0< h_{C,L} <1$\\ \hline
+$h_{C,G}$&Ratio of Coral Fish population harvested by Grouper&$0< h_{C,G} <1$\\ \hline
+$h_{L,H}$&Ratio of Coral Fish population harvested by Lionfish&$0< h_{L,H} <1$\\ \hline
+$h_{L,G}$&Ratio of Coral Fish population harvested by Lionfish&$0< h_{L,G} <1$\\ \hline
+$b_{L}$& Consumption/conversion rate of Coral fish to Lionfish biomass & $ 0\leq b_{L} \leq 1$ \\ \hline
+$d_{L}$& Per capita death rate of line fish & $0 \leq d_{L} \leq 1$ \\ \hline
+$R_{c}$& Reproductive rate of Coral fish & $ -1 \leq R_{c} \leq 1 $ \\ \hline
+\end{tabular}
+\end{center}
+\vspace{.5in}
+\textbf{EQUILIBRIA}
+
+Model 1:
+\begin{align*}
+E_{0, C_{1}} &= \left( 0, 0 \right)\\
+E_{0, C_{2}} &= \left( 0, K \right)
+\end{align*}
+
+Model 2:
+\begin{align*}
+E_{L, C_{L}} &= \left( \frac{R_{c}}{h_{C,L}} \left[ 1- \frac{d_{L}}{b_{L}K}\right], \frac{d_{L}}{b_{L}} \right)
+\end{align*}
+
+Model 3:
+\begin{align*}
+E_{L_{H}, C_{L}} &= \left( \frac{R_{c}}{h_{C,L}} \left[ 1- \frac{h_{L,H}H+d_{L}}{b_{L}K}\right], \frac{h_{L,H}H+d_{L}}{b_{L}} \right)
+\end{align*}
+
+Model 4:
+\begin{align*}
+E_{L_{H,G}, C_{L,G}} &= \left( \frac{R_{c}}{h_{C,L}}\left[ 1 - \frac{d_{L} + h_{L,H}H + h_{L,G}G}{b_{L}K} - \frac{h_{C,G}}{R_{c}}\right] , \frac{h_{L,H}H + h_{L,G}G + d_{L}}{b_{L}}\right)
+\end{align*}
+
+}
+
+{\parindent0pt
+\vspace{.5in}
+So... much nicer than previous versions. Here is the stability analysis.
+
+\begin{center}
+\textbf{STABILITY!!}
+\end{center}
+
+Model 1: \\
+$E_{0, C_{1}}$ : Unstable, Trivial \\
+$E_{0, C_{2}}$: Locally Asymptotically Stable. Trivial. \\
+
+Model 2: 
+\begin{align*}
+J(E_{L, C_{L}} ) &= \begin{pmatrix} Cb_{L} - d_{L} & - h_{C,L}C \\ & \\  b_{L}L &R_{c}\left[ 1 - \frac{2C}{K} \right] - h_{C,L} L \\ \end{pmatrix}\\ 
+\\
+J(E_{L, C_{L}} ) &= \begin{pmatrix} 0 & - \frac{h_{C,L}d_{L}}{b_{L}} \\ & \\ \frac{R_{c}b_{L}}{h_{C,L}} \left[ 1 - \frac{d_{L}}{b_{L}K} \right] & -\frac{d_{L}}{b_{L}K} \\
+\end{pmatrix}
+\end{align*}
+
+
+\begin{enumerate}
+\item $Tr(J(E_{L, C_{L}} ) ) = -\frac{d_{L}}{b_{L}K} $\\
+
+\item$det(J(E_{L, C_{L}} ) ) =   R_{c}d_{L}\left[ 1 - \frac{d_{L}}{b_{L}K}\right] $\\
+
+\item So, $(E_{L, C_{L}} )$ is stable when $ 1 < \frac{d_{L}}{b_{L}K}$,or  $Kb_{L} < d_{L}$ \\
+\end{enumerate}
+
+\vspace{.5in}
+Model 3: 
+\begin{align*}
+J(E_{L_{H}, C_{L}}  ) = \begin{pmatrix} Cb_{L} - d_{L} - h_{L,H}H & - h_{C,L} C\\
+						 & \\
+						b_{L}L & R_{c}\left[1 - \frac{2C}{K} \right] - h_{C,L}L  \end{pmatrix}\\
+\\
+J(E_{L_{H}, C_{L}}  ) = \begin{pmatrix} 0 & - h_{C,L}\frac{h_{L,H}H + d_{L}}{b_{L}K}\\
+						 & \\
+						\frac{R_{c}b_{L}}{h_{C,L}}\left( 1 - \frac{h_{L,H}H +d_{L}}{b_{L}K}\right) & -R_{c}\frac{h_{L,H}H +d_{L}}{b_{L}}  \end{pmatrix}\\
+\end{align*}
+
+
+\begin{enumerate}
+\item $Tr(J(E_{L_{H}, C_{L}})  ) = -R_{c}\frac{h_{L,H}H +d_{L}}{b_{L}}$\\
+
+\item$det(J(E_{L_{H}, C_{L}})  ) =  R_{c}(h_{L,H}H +d_{L}) \left[ 1 -R_{c}\frac{h_{L,H}H +d_{L}}{b_{L}K}\right] $\\
+
+\item So, $(E_{L_{H}, C_{L}} )$ is stable when $1  < R_{c}\frac{h_{L,H}H +d_{L}}{b_{L}K}$,or  $\frac{b_{L}K}{R_{c}} -d_{L}< (h_{L,H})H  $\\
+\end{enumerate}
+\vspace{.5in}
+
+
+
+
+Model 4: 
+\begin{align*}
+%E_{L_{H,G}, C_{L,G}} &= \left( \frac{R_{c}}{h_{C,L}}\left[ 1 - \frac{d_{L} + h_{L,H}H + h_{L,G}G}{b_{L}K} - \frac{h_{C,G}}{R_{c}}\right] , \frac{h_{L,H}H + h_{L,G}G - d_{L}}{b_{L}}\right)
+J(E_{L_{H}, C_{L}}  )& = \begin{pmatrix} Cb_{L} - d_{L} - h_{L,H}H & - h_{C,L} C\\
+						 & \\
+						b_{L}L & R_{c}\left[1 - \frac{2C}{K} \right] - h_{C,L}L  \end{pmatrix}\\
+\\
+J(E_{L_{H}, C_{L}}  ) &= \begin{pmatrix} 0 & - h_{C,L} \frac{h_{L,H}H + h_{L,G}G + d_{L}}{b_{L}}\\
+						 & \\
+						\frac{R_{c}b_{L}}{h_{C,L}}\left[ 1 - \frac{d_{L} + h_{L,H}H + h_{L,G}G}{b_{L}K} - \frac{h_{C,G}}{R_{c}}\right]& -R_{c} \left( \frac{d_{L} + h_{L,H}H + h_{L,G}G}{b_{L}K} \right) - h_{C,G}(G+1)  \end{pmatrix}\\
+\end{align*}
+
+\begin{enumerate}
+\item $Tr(J(E_{L_{H,G}, C_{L,G}})  ) =  -R_{c} \left( \frac{d_{L} + h_{L,H}H + h_{L,G}G}{b_{L}K} \right) - h_{C,G}(G+1) $\\
+
+\item$det(J(E_{L_{H,G}, C_{L,G}})  ) =   R_{c}(d_{L} + h_{L,H}H + h_{L,G}G) \left[ 1 - \frac{R_{c}(d_{L} + h_{L,H}H + h_{L,G}G)}{b_{L}K}\right] $\\
+
+\item So, $(E_{L_{H,G}, C_{L,G}} )$ is stable when $1 <  \frac{R_{c}(d_{L} + h_{L,H}H + h_{L,G}G)}{b_{L}K}$,or  $\frac{b_{L}K}{R_{c}}- d_{L} < (h_{L,H}H + h_{L,G}G)$.\\
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+}
+\end{document}

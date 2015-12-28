@@ -1,0 +1,105 @@
+\documentclass[11pt]{article}
+\usepackage{amssymb, amsmath,fullpage}
+\usepackage{graphicx, setspace,amsthm}
+\usepackage{amsfonts,amsmath,amsthm,array,amssymb, mathrsfs}
+\usepackage{framed} %%%!!!!!!!!!!!
+\usepackage{listings}
+\lstset{language=python}
+\begin{document}
+
+\being{lstlisting}
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy.integrate as integrate
+import math
+
+
+def derivs(state,t,dl,RC, K,bl):
+    global coral\_harv, lion\_attack, grouper\_harv
+    """
+    Return the derivatives of R and F, stored in the *state* vector::
+
+       state = [R, F]
+
+    The return data should be [dR, dF] which are the derivatives of R
+    and F at position state and time *t*
+    """
+    
+    C, L = state   
+    print "C =", C, "L=:", L
+#===================================
+    """
+    return the derivative of r evaulated as a
+    function of *C* and *L*.  The function should work whether *C* and *L*
+    are scalars, 1D arrays or 2D arrays.  The return value should have
+    the same dimensionality (shape) as the inputs *C* and *L*.
+    """
+     """
+    return the derivative of C evaulated as a
+    function of *C* and *L*.  The function should work whether *C* and *L*
+    are scalars, 1D arrays or 2D arrays.  The return value should have
+    the same dimensionality (shape) as the inputs *C* and *L*. Calls function to 
+    predation rates at each time step. 
+    """    
+ #==============================================
+    g= C*(RC) - C*RC*C/K - ((C)*L*lion_attack)/(1+C*lion_attack*.4) #<== coral harvest expressed as functional response 
+ #===========================================
+    f= (bl*lion_attack*C*L) - dl*L -  grouper\_harv*L <== conversion rate expressed as numerical response.
+ #==================================================
+   
+    
+    return g, f
+
+def main():
+#globals for convenience.
+    global grouper\_harv
+    global lion_attack
+    
+    
+    # the initial conditions
+    C0 = 212
+    L0 = 30
+    
+    #parameter values
+    K = 800
+    RC = .447
+    dl = .3 #roughly the lifespan of a fish life 
+    bl = .05
+    grouper_harv = .349
+    lion_attack = 8.6/240
+
+    #naming the timespace and initial condition vectors
+    t = np.linspace(0, 200, num=250)
+    y0 = [C0, L0]  # the initial 
+    
+    # integrate your ODE using scipy.integrate.  
+    y = integrate.odeint(derivs, y0, t, args=(dl,RC,K,bl))
+    
+      
+     #plotting nonsense
+    plt.figure()
+    p1, = plt.plot(t, y[:,0], 'k')#coralfish
+    p2, = plt.plot(t, y[:,1], 'k' ,lw=2)#Lionfish
+    p3, = plt.plot( grouper_harv, 'k+')
+    plt.legend([p2,p1], ["Lionfish", "Coral-fish"], loc="best")
+    plt.grid()
+
+    plt.show()
+    
+main()
+\end{lstlisting}
+
+\end{minted}
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
